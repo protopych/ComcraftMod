@@ -78,9 +78,9 @@ public class GuiButton extends GuiElement {
             return;
         }
 
-        if (getButtonImage() != buttonImage) {
-            initButtonSprite();
-        }
+//        if (getButtonImage() != buttonImage) {
+//            initButtonSprite();
+//        }
 
         boolean flag = false;
 

@@ -19,11 +19,13 @@ package net.comcraft.src;
 
 import java.util.Calendar;
 import javax.microedition.lcdui.Graphics;
+import javax.microedition.lcdui.Image;
 import net.comcraft.client.Comcraft;
 
 public class GuiMainMenu extends GuiScreen implements GuiYesNoHost {
 
     private String currentHelloWord;
+    private Image logo;
 
     public GuiMainMenu() {
         super(null);
@@ -35,10 +37,10 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoHost {
     }
 
     public void customDrawScreen() {
-        cc.g.drawImage(cc.textureProvider.getImage("gui/comcraft_logo.png"), cc.screenWidth / 2, 10, Graphics.TOP | Graphics.HCENTER);
+        cc.g.drawImage(logo, cc.screenWidth / 2, 10, Graphics.TOP | Graphics.HCENTER);
 
         cc.g.setColor(0x007FFF);
-        drawStringWithShadow(cc.g, currentHelloWord, 10, 13 + cc.textureProvider.getImage("gui/comcraft_logo.png").getHeight(), Graphics.TOP | Graphics.LEFT);
+        drawStringWithShadow(cc.g, currentHelloWord, 10, 13 + logo.getHeight(), Graphics.TOP | Graphics.LEFT);
 
         cc.g.setColor(240, 240, 240);
         drawStringWithShadow(cc.g, "Copyright " + "Piotr Wójcik" + ".", cc.screenWidth - 2, cc.screenHeight - 2 - cc.g.getFont().getHeight() - 2, Graphics.BOTTOM | Graphics.RIGHT);
@@ -49,8 +51,9 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoHost {
         currentHelloWord = getHelloWorld();
 
         int centerX = (cc.screenWidth - GuiButton.getButtonWidth()) / 2;
-
-        int logoHeight = cc.textureProvider.getImage("gui/comcraft_logo.png").getHeight();
+        
+        logo = cc.textureProvider.getImage("gui/comcraft_logo.png");
+        int logoHeight = logo.getHeight();
         int startY = 10 + logoHeight + 30;
 
         elementsList.addElement(new GuiButton(cc, 0, centerX, startY + (GuiButton.getButtonHeight() + (int) (GuiButton.getButtonHeight() * 0.35f)) * 0, cc.langBundle.getText("GuiMainMenu.buttonPlay")));
