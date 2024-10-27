@@ -6,7 +6,11 @@ import javax.microedition.lcdui.game.Sprite;
 import net.comcraft.client.Comcraft;
 
 public class GuiButton extends GuiElement {
-
+    final int color0 = 0x2D2D2D;
+    final int color1 = 0x636363;
+    final int color2 = 0x757FAD;
+    final int[] colors = {color0,color1,color2};
+    
     private Sprite buttonSprite = null;
     protected Comcraft cc;
     protected int id;
@@ -47,11 +51,11 @@ public class GuiButton extends GuiElement {
     }
 
     protected final void initButtonSprite() {
-        buttonImage = getButtonImage();
-
-        if (buttonImage != null) {
-            buttonSprite = new Sprite(buttonImage, getWidth(), getHeight());
-        }
+//        buttonImage = getButtonImage();
+//
+//        if (buttonImage != null) {
+//            buttonSprite = new Sprite(buttonImage, getWidth(), getHeight());
+//        }
     }
 
     protected int getHooverState(boolean point) {
@@ -94,9 +98,13 @@ public class GuiButton extends GuiElement {
             y -= selectedButton.yPos + selectedButton.getHeight() - cc.screenHeight + 10;
         }
 
-        buttonSprite.setPosition(xPos, y);
-        buttonSprite.setFrame(i);
-        buttonSprite.paint(cc.g);
+//        buttonSprite.setPosition(xPos, y);
+//        buttonSprite.setFrame(i);
+//        buttonSprite.paint(cc.g);
+         cc.g.setColor(colors[i]);
+         cc.g.fillRect(xPos, y, getWidth(), getHeight());
+         cc.g.setColor(0);
+         cc.g.drawRect(xPos, y, getWidth(), getHeight());
 
         drawButtonString(flag, y);
     }

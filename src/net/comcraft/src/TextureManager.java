@@ -184,7 +184,7 @@ public final class TextureManager {
 
                 Image image = Image.createImage(terrain, x * size, y * size, size, size, Sprite.TRANS_MIRROR);
 
-                Image2D image2D = new Image2D(Image2D.RGB, image);
+                Image2D image2D = new Image2D(Image2D.RGBA, image);
 
                 Texture2D texture2D = new Texture2D(image2D);
                 texture2D.setFiltering(Texture2D.FILTER_BASE_LEVEL, Texture2D.FILTER_NEAREST);
@@ -277,6 +277,7 @@ public final class TextureManager {
         if (index >= 512) {
             return cc.render.renderBlockPreview.getBlockPreviewImage(index - 512);
         } else {
+            System.err.println("itemImagesList " + index);
             return itemImagesList[index];
         }
     }

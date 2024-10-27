@@ -57,7 +57,7 @@ public class LoadingScreen {
     }
     
     private void drawBackground() {
-        Image backgroundImage = cc.textureProvider.getImage("gui/background.png");
+        //Image backgroundImage = cc.textureProvider.getImage("gui/background.png");
 //
 //        int rows = cc.screenWidth / backgroundImage.getWidth() + 1;
 //        int cols = cc.screenHeight / backgroundImage.getHeight() + 1;
