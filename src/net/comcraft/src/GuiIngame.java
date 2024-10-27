@@ -17,6 +17,11 @@ public class GuiIngame extends GuiScreen {
     private Sprite loadingChunksSprite;
     private Image lastLoadingChunksImage;
     private GuiButton screenshotButton;
+    private Image pointer;
+    private Image slot;
+    private Image slot_selection;
+    private Image loading_sprite;
+    private Image slot_more;
 
     public GuiIngame(Comcraft cc) {
         super(null);
@@ -24,6 +29,15 @@ public class GuiIngame extends GuiScreen {
         this.cc = cc;
         elementsList = new Vector(6);
         guiInventory = new GuiInventory();
+        
+        pointer = cc.textureProvider.getImage("gui/pointer.png");
+        slot = cc.textureProvider.getImage("gui/slot.png");
+        slot_selection = cc.textureProvider.getImage("gui/slot_selection.png");
+        loading_sprite = cc.textureProvider.getImage("gui/loading_sprite.png");
+        if(Touch.isTouchSupported())
+        {
+            slot_more = cc.textureProvider.getImage("gui/slot_more.png");
+        }
     }
 
     public void drawIngameGui() {
@@ -51,12 +65,12 @@ public class GuiIngame extends GuiScreen {
     }
 
     private void initLoadingChunksImage() {
-        lastLoadingChunksImage = cc.textureProvider.getImage("gui/loading_sprite.png");
+        lastLoadingChunksImage = loading_sprite;
         loadingChunksSprite = new Sprite(lastLoadingChunksImage, 50, 50);
     }
 
     private void drawLoadingChunksImage() {
-        if (lastLoadingChunksImage != cc.textureProvider.getImage("gui/loading_sprite.png")) {
+        if (lastLoadingChunksImage != loading_sprite) {
             initLoadingChunksImage();
         }
 
@@ -72,7 +86,7 @@ public class GuiIngame extends GuiScreen {
     }
 
     private void drawSelectionImage() {
-        cc.g.drawImage(cc.textureProvider.getImage("gui/pointer.png"), cc.screenWidth / 2, cc.screenHeight / 2, Graphics.HCENTER | Graphics.VCENTER);
+        cc.g.drawImage(pointer, cc.screenWidth / 2, cc.screenHeight / 2, Graphics.HCENTER | Graphics.VCENTER);
     }
 
     private void drawFastSlotBar() {
@@ -93,15 +107,15 @@ public class GuiIngame extends GuiScreen {
 
     private void drawFastSlot(int slotId, int x, int y) {
         if (slotId == 3) {
-            cc.g.drawImage(cc.textureProvider.getImage("gui/slot_more.png"), x, y, Graphics.TOP | Graphics.LEFT);
+            cc.g.drawImage(slot_more, x, y, Graphics.TOP | Graphics.LEFT);
         } else {
             cc.g.drawImage(cc.textureProvider.getItemTexture(cc.player.inventory.getItemStackAt(slotId).getItem().getIconIndex()), x, y, Graphics.TOP | Graphics.LEFT);
         }
 
-        cc.g.drawImage(cc.textureProvider.getImage("gui/slot.png"), x, y, Graphics.TOP | Graphics.LEFT);
+        cc.g.drawImage(slot, x, y, Graphics.TOP | Graphics.LEFT);
 
         if (cc.player.inventory.getSelectedElementNum() == slotId) {
-            cc.g.drawImage(cc.textureProvider.getImage("gui/slot_selection.png"), x - 2, y - 2, Graphics.TOP | Graphics.LEFT);
+            cc.g.drawImage(slot_selection, x - 2, y - 2, Graphics.TOP | Graphics.LEFT);
         }
     }
 

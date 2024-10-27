@@ -284,7 +284,7 @@ public final class TextureManager {
 
     public Image getImage(String path) {
         Image image = (Image) loadedImagesList.get(path);
-        System.err.println("getImage " + path);
+        //System.err.println("getImage " + path);
         if (image == null) {
             try {
                 //#debug

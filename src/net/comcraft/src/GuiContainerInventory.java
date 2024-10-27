@@ -19,6 +19,7 @@ package net.comcraft.src;
 
 import java.util.Vector;
 import javax.microedition.lcdui.Graphics;
+import javax.microedition.lcdui.Image;
 import net.comcraft.client.Comcraft;
 
 public class GuiContainerInventory {
@@ -35,7 +36,9 @@ public class GuiContainerInventory {
     private int selectedIndex;
     private Vector itemStackList;
     private Vector lockedItems;
-
+    private Image inventory_slot;
+    private Image inventory_slot_selection;
+        
     public GuiContainerInventory(Comcraft cc, GuiInventory guiInventory, int xPos, int yPos) {
         this.cc = cc;
         this.guiInventory = guiInventory;
@@ -44,7 +47,10 @@ public class GuiContainerInventory {
         this.yPos = yPos;
         itemStackList = new Vector(256);
         lockedItems = new Vector(256);
-
+        
+        inventory_slot = cc.textureProvider.getImage(("gui/inventory_slot.png"));
+        inventory_slot_selection = cc.textureProvider.getImage(("gui/inventory_slot_selection.png"));
+        
         if (Touch.isTouchSupported()) {
             selectedIndex = -1;
         } else {
@@ -333,10 +339,10 @@ public class GuiContainerInventory {
             cc.g.fillRect(x, y, 50, 50);
         }
 
-        cc.g.drawImage(cc.textureProvider.getImage(("gui/inventory_slot.png")), x, y, Graphics.TOP | Graphics.LEFT);
+        cc.g.drawImage(inventory_slot, x, y, Graphics.TOP | Graphics.LEFT);
 
         if (selectedIndex == id) {
-            cc.g.drawImage(cc.textureProvider.getImage(("gui/inventory_slot_selection.png")), x, y, Graphics.TOP | Graphics.LEFT);
+            cc.g.drawImage(inventory_slot_selection, x, y, Graphics.TOP | Graphics.LEFT);
         }
     }
 
