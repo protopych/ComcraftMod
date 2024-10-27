@@ -54,7 +54,7 @@ public final class Settings {
         //comcraftFileSystem = new ComcraftFileSystem(cc, "file:///e:/");
         comcraftFileSystem = new ComcraftFileSystem(cc, null);
         texturepack = "Default";
-        showFps = false;
+        showFps = true;
         debugInfo = false;
         renderDistance = 1;
         renderGui = true;

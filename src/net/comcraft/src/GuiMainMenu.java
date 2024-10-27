@@ -72,7 +72,10 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoHost {
         } else if (calendar.get(Calendar.MONTH) == Calendar.DECEMBER && calendar.get(Calendar.DAY_OF_MONTH) == 27) {
             return "Happy birthday Simon!";
         }
-
+        
+        if(cc.helloWords == null)
+            cc.helloWords = new HelloWords(cc);
+        
         return cc.helloWords.getRandomWord();
     }
 

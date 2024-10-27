@@ -17,7 +17,8 @@ public final class RenderBlockPreview {
     
     public RenderBlockPreview(RenderBlocks renderBlock) {
         this.renderBlock = renderBlock;
-        //blockPreviewImages = new Image[256];
+        //size is 128
+        //blockPreviewImages = new Image[24];
     }
 
     public Image getBlockPreviewImage(int i) {
@@ -42,7 +43,7 @@ public final class RenderBlockPreview {
           return blockPreviewImage;
         //return blockPreviewImages[id];
     }
-
+    
     public void releaseRenderBlockPreview() {
         blockPreviewImages = null;
     }
@@ -66,7 +67,7 @@ public final class RenderBlockPreview {
         light.setMode(Light.DIRECTIONAL);
         light.setIntensity(2.0f);
 
-//        for (int i = 0; i < 256; ++i) {
+//        for (int i = 0; i < blockPreviewImages.length; ++i) {
 //            blockPreviewImages[i] = Image.createImage(GuiButtonMoveControl.getButtonWidth(), GuiButtonMoveControl.getButtonHeight());
 //
 //            if (Block.blocksList[i] != null) {
