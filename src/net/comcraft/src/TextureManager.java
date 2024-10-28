@@ -277,7 +277,7 @@ public final class TextureManager {
         if (index >= 512) {
             return cc.render.renderBlockPreview.getBlockPreviewImage(index - 512);
         } else {
-            System.err.println("itemImagesList " + index);
+            //System.err.println("itemImagesList " + index);
             return itemImagesList[index];
         }
     }

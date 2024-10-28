@@ -1,17 +1,24 @@
 
 package net.comcraft.src;
 
+import javax.microedition.lcdui.Image;
+import net.comcraft.client.Comcraft;
+
 public class InventoryPlayer {
 
+    private Comcraft cc;
     private int selectedElement;
     private InvItemStack[] elementsList;
+    public Image[]  elementsImageList;
     
-    public InventoryPlayer() {
+    public InventoryPlayer(Comcraft cc) {
+        this.cc = cc;
         selectedElement = 0;
         elementsList = new InvItemStack[3];
         elementsList[0] = new InvItemStack(1, 1);
         elementsList[1] = new InvItemStack(2, 1);
         elementsList[2] = new InvItemStack(3, 1);
+        elementsImageList = new Image[3];
     }
     
     public int getSelectedElementNum() {
@@ -40,6 +47,7 @@ public class InventoryPlayer {
         }
         
         elementsList[index] = itemStack;
+        elementsImageList[index] = cc.textureProvider.getItemTexture(itemStack.getItem().getIconIndex());
     }
     
     public int getFastSlotSize() {

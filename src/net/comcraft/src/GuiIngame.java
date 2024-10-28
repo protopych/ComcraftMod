@@ -109,7 +109,8 @@ public class GuiIngame extends GuiScreen {
         if (slotId == 3) {
             cc.g.drawImage(slot_more, x, y, Graphics.TOP | Graphics.LEFT);
         } else {
-            cc.g.drawImage(cc.textureProvider.getItemTexture(cc.player.inventory.getItemStackAt(slotId).getItem().getIconIndex()), x, y, Graphics.TOP | Graphics.LEFT);
+            //cc.g.drawImage(cc.textureProvider.getItemTexture(cc.player.inventory.getItemStackAt(slotId).getItem().getIconIndex()), x, y, Graphics.TOP | Graphics.LEFT);
+            cc.g.drawImage(cc.player.inventory.elementsImageList[slotId], x, y, Graphics.TOP | Graphics.LEFT);
         }
 
         cc.g.drawImage(slot, x, y, Graphics.TOP | Graphics.LEFT);

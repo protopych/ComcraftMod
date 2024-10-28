@@ -22,6 +22,7 @@ public final class RenderBlockPreview {
     }
 
     public Image getBlockPreviewImage(int i) {
+            //System.out.println("getBlockPreviewImage "+ i);
             Image blockPreviewImage = Image.createImage(GuiButtonMoveControl.getButtonWidth(), GuiButtonMoveControl.getButtonHeight());
 
             if (Block.blocksList[i] != null) {

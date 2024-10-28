@@ -41,7 +41,7 @@ public class EntityPlayer {
 
     public EntityPlayer(Comcraft cc) {
         this.cc = cc;
-        inventory = new InventoryPlayer();
+        inventory = new InventoryPlayer(cc);
         vVec = new Vec3D();
         xPos = 32;
         yPos = 15;
