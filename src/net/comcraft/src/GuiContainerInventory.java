@@ -38,6 +38,7 @@ public class GuiContainerInventory {
     //private Vector lockedItems;
     private Image inventory_slot;
     private Image inventory_slot_selection;
+    //int draws = 0;
         
     public GuiContainerInventory(Comcraft cc, GuiInventory guiInventory, int xPos, int yPos) {
         this.cc = cc;
@@ -313,15 +314,19 @@ public class GuiContainerInventory {
                     x = xPos + colsI * 50;
                     y = yPos + rowsI * 50;
                 }
-
-                drawSlot(itemStack, x, y, id);
+                if(y+amountScrolled>=0 && y + amountScrolled - yPos <= height)
+                    drawSlot(itemStack, x, y, id);
             }
         }
-
+//        System.out.println("xPos " + xPos + "yPos " + yPos + "width " + width + "height " + height);
+//        System.out.println("amount scrolled "+amountScrolled);
+//        System.out.println("draws = " + draws);
+//        draws = 0;
         cc.g.setClip(0, 0, Comcraft.screenWidth, Comcraft.screenHeight);
     }
 
     private void drawSlot(InvItemStack itemStack, int x, int y, int id) {
+        //draws++;
         if (Touch.isTouchSupported()) {
             x += amountScrolled;
         } else {
