@@ -35,7 +35,7 @@ public class GuiContainerInventory {
     private int amountScrolled;
     private int selectedIndex;
     private Vector itemStackList;
-    private Vector lockedItems;
+    //private Vector lockedItems;
     private Image inventory_slot;
     private Image inventory_slot_selection;
         
@@ -46,7 +46,7 @@ public class GuiContainerInventory {
         this.xPos = xPos;
         this.yPos = yPos;
         itemStackList = new Vector(256);
-        lockedItems = new Vector(256);
+        //lockedItems = new Vector(256);
         
         inventory_slot = cc.textureProvider.getImage(("gui/inventory_slot.png"));
         inventory_slot_selection = cc.textureProvider.getImage(("gui/inventory_slot_selection.png"));
@@ -331,9 +331,9 @@ public class GuiContainerInventory {
         if (itemStack != null) {
             cc.g.drawImage(cc.textureProvider.getItemTexture(itemStack.getItem().getIconIndex()), x, y, Graphics.TOP | Graphics.LEFT);
 
-            if (lockedItems.contains(new Integer(itemStack.itemID))) {
-                cc.g.drawImage(cc.textureProvider.getImage("gui/locked_item.png"), x, y, Graphics.TOP | Graphics.LEFT);
-            }
+//            if (lockedItems.contains(new Integer(itemStack.itemID))) {
+//                cc.g.drawImage(cc.textureProvider.getImage("gui/locked_item.png"), x, y, Graphics.TOP | Graphics.LEFT);
+//            }
         } else {
             cc.g.setColor(0xffffff);
             cc.g.fillRect(x, y, 50, 50);
@@ -363,10 +363,10 @@ public class GuiContainerInventory {
 
         if (id < itemStackList.size()) {
             InvItemStack itemStack = (InvItemStack) itemStackList.elementAt(id);
-
-            if (!lockedItems.contains(new Integer(itemStack.itemID))) {
-                guiInventory.clickedItemStack(itemStack);
-            }
+            guiInventory.clickedItemStack(itemStack);
+//            if (!lockedItems.contains(new Integer(itemStack.itemID))) {
+//                
+//            }
         }
     }
 
@@ -409,10 +409,11 @@ public class GuiContainerInventory {
             checkSelectedElement();
         } else if (Keyboard.wasButtonDown(Keyboard.KEY_FIRE) || Keyboard.wasButtonDown(Keyboard.KEY_F)) {
             InvItemStack itemStack = (InvItemStack) itemStackList.elementAt(selectedIndex);
-
-            if (!lockedItems.contains(new Integer(itemStack.itemID))) {
-                guiInventory.clickedItemStack(itemStack);
-            }
+            guiInventory.clickedItemStack(itemStack);
+            
+//            if (!lockedItems.contains(new Integer(itemStack.itemID))) {
+//                guiInventory.clickedItemStack(itemStack);
+//            }
         }
     }
 
