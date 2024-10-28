@@ -46,7 +46,7 @@ public final class RenderBlockPreview {
     }
     
     public void releaseRenderBlockPreview() {
-        blockPreviewImages = null;
+        //blockPreviewImages = null;
     }
     
     public void reloadRenderBlockPreview() {

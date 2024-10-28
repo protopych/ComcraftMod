@@ -33,7 +33,8 @@ public final class TextureManager {
         loadedImagesList.clear();
         System.gc();
         //loadAllImages();
-
+        loadedImagesList = new Hashtable(50);
+        terrainTexturesList = new Texture2D[512];
         loadTerrainTextures();
         loadItemTextures();
     }

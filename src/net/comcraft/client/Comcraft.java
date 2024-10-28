@@ -452,6 +452,9 @@ public final class Comcraft implements Runnable {
 
             world = null;
         }
+        //Release used memory
+        render.releaseRender();
+        textureProvider.releaseTextures();
     }
 
     public static String getPlatform() {
