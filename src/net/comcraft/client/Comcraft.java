@@ -410,7 +410,10 @@ public final class Comcraft implements Runnable {
     {
         printUsedMemory("before destroyUnsed():");
         this.helloWords = null;
-        //this.texturePackList = null;
+        guiIngame = null;
+        player = null;
+        render = null;
+        textureProvider = null;
         System.gc();
         printUsedMemory("after destroyUnsed():");
     }
@@ -420,8 +423,11 @@ public final class Comcraft implements Runnable {
         //free memory
         destroyUnsed();
         //prepare render
+        textureProvider = new TextureManager(this);
         textureProvider.reloadTextures();
         printUsedMemory("textureProvider.reloadTextures():");
+        render = new Render(this);
+        render.initRender();
         render.reloadRender();
         printUsedMemory("render.reloadRender():");
         
@@ -430,7 +436,7 @@ public final class Comcraft implements Runnable {
         printUsedMemory("guiIngame.initIngameGui():");
 
         isGamePaused = false;
-
+        //worldLoader = new WorldLoader(this);
         SaveInfo saveHandler = worldLoader.getSaveLoader(worldInfo.getWorldName());
         printUsedMemory("worldLoader.getSaveLoader(worldInfo.getWorldName()):");
 

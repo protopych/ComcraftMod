@@ -314,7 +314,11 @@ public class GuiContainerInventory {
                     x = xPos + colsI * 50;
                     y = yPos + rowsI * 50;
                 }
-                if(y+amountScrolled>=0 && y + amountScrolled - yPos <= height)
+                if (Touch.isTouchSupported() && x+amountScrolled>=0 && 
+                        x + amountScrolled - xPos <= width) {
+                    drawSlot(itemStack, x, y, id);
+                }
+                else if(y+amountScrolled>=0 && y + amountScrolled - yPos <= height)
                     drawSlot(itemStack, x, y, id);
             }
         }

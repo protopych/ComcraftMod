@@ -31,10 +31,11 @@ public final class TextureManager {
 
     public void reloadTextures() {
         loadedImagesList.clear();
-        System.gc();
         //loadAllImages();
         loadedImagesList = new Hashtable(50);
         terrainTexturesList = new Texture2D[512];
+        itemImagesList = new Image[512];
+        System.gc();
         loadTerrainTextures();
         loadItemTextures();
     }

@@ -8,7 +8,7 @@ import javax.microedition.m3g.*;
 public final class RenderBlockPreview {
 
     private RenderBlocks renderBlock;
-    private Image[] blockPreviewImages;
+    //private Image[] blockPreviewImages;
     Camera camera;
     Transform blockTrans;
     Transform camTrans;
