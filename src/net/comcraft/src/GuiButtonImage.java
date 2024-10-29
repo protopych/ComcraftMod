@@ -5,11 +5,8 @@ import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.Sprite;
 import net.comcraft.client.Comcraft;
 
-public class GuiButton extends GuiElement {
-    final int color0 = 0x2D2D2D;
-    final int color1 = 0x636363;
-    final int color2 = 0x757FAD;
-    final int[] colors = {color0,color1,color2};
+public class GuiButtonImage extends GuiElement {
+
     
     private Sprite buttonSprite = null;
     protected Comcraft cc;
@@ -21,14 +18,14 @@ public class GuiButton extends GuiElement {
     public boolean drawButton;
     private Image buttonImage;
 
-    public GuiButton(Comcraft cc, int id, int x, int y, String displayString) {
+    public GuiButtonImage(Comcraft cc, int id, int x, int y, String displayString) {
         this(cc, id, x, y);
 
         this.displayString = displayString;
         initButtonSprite();
     }
 
-    protected GuiButton(Comcraft cc, int id, int x, int y) {
+    protected GuiButtonImage(Comcraft cc, int id, int x, int y) {
         this.cc = cc;
         enabled = true;
         drawButton = true;
@@ -41,14 +38,13 @@ public class GuiButton extends GuiElement {
         return id;
     }
 
-    public final GuiButton setEnabled(boolean flag) {
+    public final GuiButtonImage setEnabled(boolean flag) {
         enabled = flag;
         return this;
     }
 
     protected Image getButtonImage() {
-        //return cc.textureProvider.getImage("gui/button.png");
-        return null;
+        return cc.textureProvider.getImage("gui/button.png");
     }
 
     protected final void initButtonSprite() {
@@ -71,7 +67,7 @@ public class GuiButton extends GuiElement {
         return isOver;
     }
 
-    public void drawButton(GuiButton selectedButton) {
+    public void drawButton(GuiButtonImage selectedButton) {
         if (!drawButton) {
             if (!Touch.isInputHandled() && Touch.isPressed() && checkPoint(Touch.getX(), Touch.getY())) {
                 Touch.setInputHandled();
@@ -79,7 +75,7 @@ public class GuiButton extends GuiElement {
             return;
         }
 
-        if (Touch.isTouchSupported() && getButtonImage() != buttonImage) {
+        if (getButtonImage() != buttonImage) {
             initButtonSprite();
         }
 
@@ -98,19 +94,11 @@ public class GuiButton extends GuiElement {
         if (selectedButton != null && selectedButton.yPos + selectedButton.getHeight() > cc.screenHeight) {
             y -= selectedButton.yPos + selectedButton.getHeight() - cc.screenHeight + 10;
         }
-        
-        if(Touch.isTouchSupported() && buttonSprite != null)
-        {
-            buttonSprite.setPosition(xPos, y);
-            buttonSprite.setFrame(i);
-            buttonSprite.paint(cc.g);
-        }
-        else{
-         cc.g.setColor(colors[i]);
-         cc.g.fillRect(xPos, y, getWidth(), getHeight());
-         cc.g.setColor(0);
-         cc.g.drawRect(xPos, y, getWidth(), getHeight());
-        }
+
+        buttonSprite.setPosition(xPos, y);
+        buttonSprite.setFrame(i);
+        buttonSprite.paint(cc.g);
+
 
         drawButtonString(flag, y);
     }
